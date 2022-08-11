@@ -36,11 +36,13 @@ if (!window.console.error) {
 }
 
 $(document).ready(function() {
-    DataStore.init(function(){
+    DataStore.init(function() {
         HistoryStore.init();
         UserDetail.init();
         TimeView.init();
-        TeamSearch.init();
+        TeamSearch.init(function() {
+          DataStore.init_selections();
+        });
         Overview.init();
         Scoreboard.init();
     });

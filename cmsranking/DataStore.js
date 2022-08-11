@@ -399,7 +399,7 @@ var DataStore = new function () {
             delete old_user["rank"];
         });
 
-        self.init_selections();
+        self.init_callback();
     };
 
 
@@ -413,8 +413,8 @@ var DataStore = new function () {
        - they also start an AJAX request and process its data
        - when BOTH requests finish init_scores() is called
        - it does again an AJAX request and processes its data
-       - at the end it calls init_ranks() which calls init_selections() which,
-         in turn, calls init_callback()
+       - at the end it calls init_ranks() which calls init_callback()
+       - Subsequently, when TeamStore is initialized, we call init_selections().
      */
 
     self.init = function (callback) {
@@ -636,8 +636,6 @@ var DataStore = new function () {
                 }
             }
         });
-
-        self.init_callback();
     };
 
     self.set_selected = function (u_id, flag, color_idx) {
