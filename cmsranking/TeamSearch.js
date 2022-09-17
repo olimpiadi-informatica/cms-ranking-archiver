@@ -119,10 +119,8 @@ var TeamSearch = new function () {
             inner_html += " \
 <div class=\"item\" data-team=\"" + t_id + "\"> \
     <label> \
-        <input type=\"checkbox\"/> "
-        if (!(DataStore.asset_config && DataStore.asset_config["noflags"]))
-            inner_html += "<img class=\"flag\" src=\"" + Config.get_flag_url(t_id) + "\" /> "
-        inner_html += team['name'] + " \
+        <input type=\"checkbox\"/> \
+        <span>" + t_id +": " + team['name'] + " \
     </label> \
 </div>";
         }
@@ -188,7 +186,7 @@ var TeamSearch = new function () {
             // (We would need another query to get the complementary set).
             for (var t_id in DataStore.teams) {
                 var team = DataStore.teams[t_id];
-                if (team["name"].toLowerCase().indexOf(search_text.toLowerCase()) == -1) {
+                if (team["name"].toLowerCase().indexOf(search_text.toLowerCase()) == -1 && t_id.toLowerCase().indexOf(search_text.toLowerCase()) == -1) {
                     $("div.item[data-team=" + t_id + "]", self.body).addClass("hidden");
                 } else {
                     $("div.item[data-team=" + t_id + "]", self.body).removeClass("hidden");
