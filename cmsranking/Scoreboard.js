@@ -226,7 +226,7 @@ var Scoreboard = new function () {
         self.sort();
     };
 
-    
+
 
 
     self.make_row = function (user) {
@@ -239,15 +239,11 @@ var Scoreboard = new function () {
     <td colspan=\"10\" class=\"l_name\">" + escapeHTML(user["l_name"]) + "</td>";
 
         if (user['team']) {
-            if (DataStore.asset_config && DataStore.asset_config["noflags"])
-                result += " \
-            <td class=\"team\">" + user["team"] + "</td>";
-            else
-                result += " \
-    <td class=\"team\" title=\"" + DataStore.teams[user["team"]]["name"] + "\">" + user['key'] + "</td>";
+            result += " \
+    <td class=\"team\"><img src=\"" + Config.get_flag_url(user["team"]) + "\" title=\"" + DataStore.teams[user["team"]]["name"] + "\" /></td>";
         } else {
             result += " \
-    <td class=\"team\">" + user['key'] + "</td>";
+    <td class=\"team\"></td>";
         }
 
         var contests = DataStore.contest_list;
